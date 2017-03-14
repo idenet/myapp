@@ -7,6 +7,7 @@ const state = {
     data: [],
     totalNum: 0
   },
+  book: {},
   cateId: 242, // 代表获取id为242的所有书籍
   showLoading: false
 }
@@ -21,7 +22,7 @@ const actions = {
   },
   async [types.FETCH_BOOK_LIST](context, payload) {
     let data = await fetchBookList(payload.type, payload.id, payload.pn)
-    return context.commit(types.FETCH_BOOK_LIST, data)
+    context.commit(types.FETCH_BOOK_LIST, data)
   },
   [types.GET_CATEID](context, status) {
     context.commit(types.GET_CATEID, status)

@@ -1,22 +1,11 @@
-export function getAmazonUrl(bookList) {
-  // let amazomUrl = []
-  bookList.forEach((value, index) => {
-    let arrUrl = value
-      .online
-      .split(' ')
-    let judg = judgment(arrUrl)
-    console.log(judg)
-    if (judg) {}
+export function getBuyUrl(str) {
+  let arr = str.split(' ')
+  let obj = {}
+  arr.forEach((value, index) => {
+    let result = value.split(':')
+    let key = result[0]
+    let val = result[1] + ':' + result[2]
+    obj[key] = val
   })
-}
-
-function judgment(arrUrl) {
-  arrUrl.forEach((value, index) => {
-    let arr = value.split(':')
-    console.log(arr)
-    if (arr[0] === '亚马逊') {
-      console.log(1)
-      return arr[2]
-    }
-  })
+  return obj
 }

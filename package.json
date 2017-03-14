@@ -15,6 +15,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue": "^2.2.2",
+    "vue-infinite-loading": "^2.0.3",
     "vue-infinite-scroll": "^2.0.0",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1"

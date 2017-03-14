@@ -35,6 +35,6 @@ export function fetchCatelogByType(type, dtype = 'json', key = APP_KEY) {
   return fetchItemByType(`goodbook/${type}?dtype=${dtype}&key=${key}`)
 }
 
-export function fetchBookList(type, id, pn = 0, rn = 30, dtype = 'json', key = APP_KEY) {
+export function fetchBookList(type, id, pn = 0, rn = 10, dtype = 'json', key = APP_KEY) {
   return fetch(`goodbook/${type}?catalog_id=${id}&pn=${pn}&rn=${rn}&dtype=${dtype}&key=${key}`)
 }

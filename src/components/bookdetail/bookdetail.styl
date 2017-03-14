@@ -1,0 +1,76 @@
+.book-detail
+  position: fixed
+  top: 0
+  left: 0
+  bottom: 0
+  width: 100%
+  background: #fff
+  z-index: 30
+  overflow: hidden
+  transform: translate3d(0, 0, 0)
+  &.fade-enter-active, &.fade-leave-active
+    transition: all 0.5s
+  &.fade-enter, &.fade-leave-active
+    transform: translate3d(100%, 0, 0)
+  .image-header
+    position: relative
+    width: 100%
+    height: 0
+    padding-top: 100%
+    img
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+    .back
+      position: absolute
+      top: 10px
+      left: 0
+      .icon-arrow_lift
+        display: block
+        padding: 10px
+        font-size: 20px
+        color: rgb(0, 160, 220)
+  .content
+    position: relative
+    padding: 18px
+    .title
+      line-height: 14px
+      margin-bottom: 8px
+      font-size: 14px
+      font-weight: 700
+      color: #07111b
+    .detail
+      margin-bottom: 18px
+      line-height: 10px
+      height: 10px
+      font-size: 10px
+      .desc
+        color: rgba(7, 17, 27, 0.5)
+    .time
+      line-height: 24px
+      .bytime
+        font-size: 14px
+        color: rgba(7, 17, 27, 0.5)
+    .buy-wrapper
+      position: absolute
+      right: 32px
+      bottom: 23px
+      .buy
+        font-size: 12px
+        line-height: 12px
+        color: rgb(0, 160, 220)
+  .info
+    padding: 18px
+    .title
+      line-height: 14px
+      margin-bottom: 6px
+      font-size: 14px
+      color: rgb(7, 17, 27)
+    .text
+      line-height: 24px
+      padding: 0 8px
+      font-size: 12px
+      color: rgb(77, 85, 93)
+

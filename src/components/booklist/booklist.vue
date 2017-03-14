@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="booklist-wrapper" ref="bookList" v-show="!loading">
+    <div class="booklist-wrapper" ref="bookList" v-show="!loading" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy"
+      infinite-scroll-distance="10">
       <ul>
-        <li v-for="(item,index) in bookList.data" :key="index">
+        <li v-for="(item,index) in bookList.data" @click="selectBook(item,$event)" :key="index">
           <h1 class="title">{{item.title}}</h1>
           <div class="book-item">
             <div class="item-left">
@@ -32,28 +33,29 @@
       </ul>
     </div>
     <spinner v-show="loading" class="spinner"></spinner>
+    <bookdetail :book="bookSelected" ref="bookDetail"></bookdetail>
   </div>
 </template>
 
 <script>
-  import BScroll from 'better-scroll'
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '@/store/types'
+  import InfiniteScroll from 'vue-infinite-scroll'
+  import BScroll from 'better-scroll'
   import spinner from '@/components/spinner/spinner'
+  import bookdetail from '@/components/bookdetail/bookdetail'
 
   export default {
     data() {
       return {
-        num: {
-          type: Number,
-          default: 0
-        }
+        bookSelected: {}
       }
     },
     computed: {
       ...mapGetters({
         bookList: 'fetchBookList',
-        id: 'cateId'
+        id: 'cateId',
+        busy: 'showLoading'
       }),
       loading() {
         if (this.bookList.data.length === 0) {
@@ -65,23 +67,28 @@
     },
     watch: {
       'id'() {
-        this._getBookData()
+        this.loadMore()
       }
-    },
-    created() {
-      this._getBookData()
     },
     updated() {
       this._initBookScroll()
-    },
-    destroyed() {
-      if (this.bookList) {
-        this[types.CLEAN_BOOK_LIST]()
-      }
+      /* 上拉刷新 下拉无限刷新算事完成了吗？完全没有延迟
+      this.bookScroll.on('touchend', pos => {
+        console.log(pos.y)
+      }) */
+      // console.log(this.bookScroll.scrollEnd())
     },
     methods: {
       ...mapActions([types.FETCH_BOOK_LIST, types.CLEAN_BOOK_LIST, types.TOOGLE_LOADING]),
-      _getBookData() {
+      selectBook(item, event) {
+        if (!event._constructed) {
+          return
+        }
+        this.bookSelected = item
+        this.$refs.bookDetail.show()
+      },
+      loadMore() {
+        this[types.TOOGLE_LOADING](true)
         let start = this.bookList.data.length
         this[types.FETCH_BOOK_LIST]({
           type: 'query',
@@ -92,16 +99,23 @@
       _initBookScroll() {
         if (!this.bookScroll) {
           this.bookScroll = new BScroll(this.$refs.bookList, {
+            probeType: 3,
             click: true
           })
+          // this.bookScroll.on('scrollEnd', () => {
+          //   console.log(1)
+          // })
         } else {
           this.bookScroll.refresh()
-          this.bookScroll.scrollTo(0, 0)
         }
       }
     },
     components: {
-      spinner
+      spinner,
+      bookdetail
+    },
+    directives: {
+      InfiniteScroll
     }
   }
 
