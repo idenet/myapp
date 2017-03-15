@@ -48,7 +48,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .v-spinner .v-beat {
     -webkit-animation: v-beatStretchDelay 0.7s infinite linear;
     animation: v-beatStretchDelay 0.7s infinite linear;

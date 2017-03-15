@@ -3,9 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import { sync } from 'vuex-router-sync'
 import axios from 'axios'
 import store from '@/store/store'
 import '@/common/stylus/index.styl'
+
+sync(store, router) // 将state和route保持同步
 
 Vue.config.productionTip = false
 

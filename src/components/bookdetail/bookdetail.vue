@@ -81,6 +81,6 @@
 
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   @import 'bookdetail.styl'
 </style>

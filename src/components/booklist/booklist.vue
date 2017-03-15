@@ -44,6 +44,7 @@
   import BScroll from 'better-scroll'
   import spinner from '@/components/spinner/spinner'
   import bookdetail from '@/components/bookdetail/bookdetail'
+    import { API_TYPE } from '@/store/api.js'
 
   export default {
     data() {
@@ -91,7 +92,7 @@
         this[types.TOOGLE_LOADING](true)
         let start = this.bookList.data.length
         this[types.FETCH_BOOK_LIST]({
-          type: 'query',
+          type: API_TYPE.book.query,
           id: this.id,
           pn: start
         })
@@ -121,6 +122,6 @@
 
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   @import 'booklist.styl'
 </style>

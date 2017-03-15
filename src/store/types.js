@@ -11,3 +11,15 @@ export const CLEAN_BOOK_LIST = 'CLEAN_BOOK_LIST'
 
 // loading
 export const TOOGLE_LOADING = 'TOOGLE_LOADING'
+
+// movie
+export const FETCH_MOVIE_LIST = 'FETCH_MOVIE_LIST'
+export const FETCH_MOVIE_DETAIL = 'FETCH_MOVIE_DETAIL'
+
+export const CLEAN_MOVIE_LIST = 'CLEAN_MOVIE_LIST'
+export const CLEAN_MOVIE_DETAIL = 'CLEAN_MOVIE_DETAIL'
+
+// weixin
+export const FETCH_WEIXIN_LIST = 'FETCH_WEIXIN_LIST'
+export const CLEAN_WEIXIN_LIST = 'CLEAN_WEIXIN_LIST'
+export const NEXT_PAGE = 'NEXT_PAGE'

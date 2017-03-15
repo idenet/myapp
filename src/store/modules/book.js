@@ -43,9 +43,10 @@ const actions = {
 
 const mutations = {
   [types.FETCH_CATEGORY](state, obj) {
-    state.catelog = obj
+    state.catelog = obj.result
   },
   [types.FETCH_BOOK_LIST](state, obj) {
+    obj = obj.result
     state.bookList.totalNum = obj.totalNum
     state.bookList.data = state
       .bookList

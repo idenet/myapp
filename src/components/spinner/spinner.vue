@@ -60,7 +60,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .v-spinner .v-bounce {}
   
   .v-spinner .v-bounce1 {}

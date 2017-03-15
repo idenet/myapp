@@ -35,6 +35,7 @@
   import BScroll from 'better-scroll'
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '@/store/types'
+  import { API_TYPE } from '@/store/api.js'
   import booklist from '@/components/booklist/booklist'
 
   export default {
@@ -65,7 +66,7 @@
       this.currentIndex = 0
       if (this.category.length === 0) {
         this[types.FETCH_CATEGORY]({
-          type: 'catalog'
+          type: API_TYPE.book.catalog
         })
       }
     },
@@ -109,8 +110,8 @@
           this.$refs.categoryList.style.width = sumWidth + arr.length * (6 + 2) + 10 + 'px'
           if (!this.menuScroll) {
             this.menuScroll = new BScroll(this.$refs.category, {
-              scrollX: true,
-              click: true
+              click: true,
+              scrollX: true
             })
           } else {
             this.menuScroll.refresh()
@@ -135,6 +136,6 @@
 
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   @import 'book.styl'
 </style>

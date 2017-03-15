@@ -65,6 +65,10 @@ watch: {
 而现在我可以通过vuex-router-sync来同步state和¥route的属性。这样就能简单的通过store.route.params获取。
 
 
+### 功能
+因为聚合免费的api很翔，只能提供这些简陋的功能了。
+
+
 
 
 

@@ -32,6 +32,6 @@
 
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   @import 'app.styl'
 </style>
