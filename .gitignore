@@ -1,7 +1,5 @@
 .DS_Store
 node_modules/
-src/config/key.js
-src/common/data
 dist/
 npm-debug.log
 yarn-error.log

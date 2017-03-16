@@ -35,7 +35,6 @@
   import BScroll from 'better-scroll'
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '@/store/types'
-  import { API_TYPE } from '@/store/api.js'
   import booklist from '@/components/booklist/booklist'
 
   export default {
@@ -64,20 +63,11 @@
     },
     created() {
       this.currentIndex = 0
-      if (this.category.length === 0) {
-        this[types.FETCH_CATEGORY]({
-          type: API_TYPE.book.catalog
-        })
-      }
+      this[types.FETCH_CATEGORY]()
     },
     updated() {
       this._initScroll()
       this._initListScroll()
-    },
-    destroyed() {
-      if (this.category.length !== 0) {
-        this[types.CLEAN_CATEGORY]()
-      }
     },
     methods: {
       ...mapActions([types.FETCH_CATEGORY, types.CLEAN_CATEGORY, types.GET_CATEID, types.CLEAR_BOOK_LIST]),

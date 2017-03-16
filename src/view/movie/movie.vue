@@ -44,7 +44,6 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '@/store/types'
-  import { API_TYPE } from '@/store/api.js'
   import BScroll from 'better-scroll'
   import star from '@/components/star/star'
 
@@ -56,6 +55,9 @@
     },
     created() {
       this.getMovies()
+    },
+    activated() {
+      this._initMovieScroll()
     },
     updated() {
       this._initMovieScroll()
@@ -69,7 +71,6 @@
       ...mapActions([types.FETCH_MOVIE_LIST, types.CLEAN_MOVIE_LIST]),
       getMovies() {
         this[types.FETCH_MOVIE_LIST]({
-          type: API_TYPE.movie.pmovie,
           city: '宁波'
         })
       },

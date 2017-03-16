@@ -14,7 +14,7 @@ const state = {
 
 const actions = {
   async [types.FETCH_WEIXIN_LIST](ctx, payload) {
-    let data = await fetchWeixinListByPage(payload.type, payload.pno)
+    let data = await fetchWeixinListByPage(payload.pno)
     ctx.commit(types.FETCH_WEIXIN_LIST, data)
   },
   [types.CLEAN_MOVIE_LIST](ctx) {

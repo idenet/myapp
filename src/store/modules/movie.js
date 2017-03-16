@@ -13,7 +13,7 @@ const state = {
 
 const actions = {
   async [types.FETCH_MOVIE_LIST](ctx, payload) {
-    let data = await fetchMovieListByCity(payload.type, payload.city)
+    let data = await fetchMovieListByCity(payload.city)
     ctx.commit(types.FETCH_MOVIE_LIST, data)
   },
   // 因api查询不好用这个功能不做了

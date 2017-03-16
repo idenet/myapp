@@ -13,15 +13,15 @@ const state = {
 }
 
 const actions = {
-  async [types.FETCH_CATEGORY](context, payload) {
+  async [types.FETCH_CATEGORY](context) {
     // fetchCatelogByType(payload.type).then(data => {   return
     // context.commit(types.FETCH_CATEGORY, data) }) 因为
     // 本身返回的就是一个promise，那么就可以使用await
-    let data = await fetchCatelogByType(payload.type)
+    let data = await fetchCatelogByType()
     context.commit(types.FETCH_CATEGORY, data)
   },
   async [types.FETCH_BOOK_LIST](context, payload) {
-    let data = await fetchBookList(payload.type, payload.id, payload.pn)
+    let data = await fetchBookList(payload.id, payload.pn)
     context.commit(types.FETCH_BOOK_LIST, data)
   },
   [types.GET_CATEID](context, status) {

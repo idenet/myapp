@@ -22,7 +22,6 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '@/store/types'
-  import { API_TYPE } from '@/store/api.js'
   import InfiniteScroll from 'vue-infinite-scroll'
   import BScroll from 'better-scroll'
 
@@ -35,7 +34,10 @@
       })
     },
     created() {
-      console.log(this.page)
+      this.loadMore()
+    },
+    activated() {
+      this._initListScroll()
     },
     updated() {
       this._initListScroll()
@@ -45,7 +47,6 @@
       loadMore() {
         this[types.NEXT_PAGE]()
         this[types.FETCH_WEIXIN_LIST]({
-          type: API_TYPE.weixin.query,
           pno: this.page
         })
         this[types.TOOGLE_LOADING](true)

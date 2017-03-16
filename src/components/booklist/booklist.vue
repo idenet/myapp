@@ -44,7 +44,6 @@
   import BScroll from 'better-scroll'
   import spinner from '@/components/spinner/spinner'
   import bookdetail from '@/components/bookdetail/bookdetail'
-    import { API_TYPE } from '@/store/api.js'
 
   export default {
     data() {
@@ -71,6 +70,12 @@
         this.loadMore()
       }
     },
+    created() {
+      this.loadMore()
+    },
+    activated() {
+      this._initBookScroll()
+    },
     updated() {
       this._initBookScroll()
       /* 上拉刷新 下拉无限刷新算事完成了吗？完全没有延迟
@@ -92,7 +97,6 @@
         this[types.TOOGLE_LOADING](true)
         let start = this.bookList.data.length
         this[types.FETCH_BOOK_LIST]({
-          type: API_TYPE.book.query,
           id: this.id,
           pn: start
         })

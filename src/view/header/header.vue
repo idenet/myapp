@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-wrapper">
-      <a href="http://localhost:8080/" class="logo">my app</a>
+      <a href="http://192.168.1.101:8080/" class="logo">my app</a>
       <a href="https://github.com/idenet/myapp" class="github icon-github"></a>
     </div>
     <div class="background">
