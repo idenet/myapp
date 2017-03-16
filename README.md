@@ -77,7 +77,7 @@ watch: {
 
 # 演示
 演示--简陋的功能让人脸红
-<img src="https://github.com/idenet/myapp/gif/myapp.gif" width="400" height="600" /> 
+<img src="https://github.com/idenet/myapp/blob/master/gif/myapp.gif" width="400" height="600" /> 
 
 
 
