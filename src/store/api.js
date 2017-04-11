@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import store from '@/store/store' 使用代理 const HOST = '/api/' 开发用代理host
-const HOST = 'http://192.168.1.101:3000/api/'
+const HOST = 'http://192.168.1.105:3000/api/'
 
 /**
  * 获取数据
