@@ -1,5 +1,5 @@
 <template>
-  <div class="wechat" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10" ref="weixin">
+  <div class="wechat" ref="weixin">
     <div class="wechat-wrapper">
       <div class="wechat-title">
         <h1>微信精选</h1>
@@ -22,15 +22,12 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '@/store/types'
-  import InfiniteScroll from 'vue-infinite-scroll'
   import BScroll from 'better-scroll'
 
   export default {
     computed: {
       ...mapGetters({
-        weixinList: 'fetchWeixinList',
-        busy: 'busy',
-        page: 'nextPage'
+        weixinList: 'fetchWeixinList'
       })
     },
     created() {
@@ -43,13 +40,9 @@
       this._initListScroll()
     },
     methods: {
-      ...mapActions([types.FETCH_WEIXIN_LIST, types.TOOGLE_LOADING, types.NEXT_PAGE]),
+      ...mapActions([types.FETCH_WEIXIN_LIST]),
       loadMore() {
-        this[types.NEXT_PAGE]()
-        this[types.FETCH_WEIXIN_LIST]({
-          pno: this.page
-        })
-        this[types.TOOGLE_LOADING](true)
+        this[types.FETCH_WEIXIN_LIST]()
       },
       _initListScroll() {
         if (!this.listScroll) {
@@ -60,9 +53,6 @@
           this.listScroll.refresh()
         }
       }
-    },
-    directives: {
-      InfiniteScroll
     }
   }
 

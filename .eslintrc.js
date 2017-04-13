@@ -26,6 +26,7 @@ module.exports = {
     'indent': 0,
     // 不需要保存后在最后空出一行
     'eol-last': 0,
-    'space-before-function-paren': 0
+    'space-before-function-paren': 0,
+    'quotes': 0
   }
 }

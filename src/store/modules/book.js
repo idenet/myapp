@@ -8,20 +8,22 @@ const state = {
     totalNum: 0
   },
   book: {},
-  cateId: 242, // 代表获取id为242的所有书籍
-  showLoading: false
+  cateId: 242 // 代表获取id为242的所有书籍
 }
 
 const actions = {
   async [types.FETCH_CATEGORY](context) {
-    // fetchCatelogByType(payload.type).then(data => {   return
-    // context.commit(types.FETCH_CATEGORY, data) }) 因为
-    // 本身返回的就是一个promise，那么就可以使用await
     let data = await fetchCatelogByType()
     context.commit(types.FETCH_CATEGORY, data)
   },
-  async [types.FETCH_BOOK_LIST](context, payload) {
-    let data = await fetchBookList(payload.id, payload.pn)
+  async [types.FETCH_BOOK_LIST](context) {
+    let data = {}
+    let Totaldata = await fetchBookList()
+    for (let v of Totaldata) {
+     if (v.id === state.cateId) {
+        data = v.result
+     }
+    }
     context.commit(types.FETCH_BOOK_LIST, data)
   },
   [types.GET_CATEID](context, status) {
@@ -35,9 +37,6 @@ const actions = {
   },
   [types.CLEAR_BOOK_LIST](context) {
     context.commit(types.CLEAR_BOOK_LIST)
-  },
-  [types.TOOGLE_LOADING](context, status) {
-    context.commit(types.TOOGLE_LOADING, status)
   }
 }
 
@@ -46,18 +45,11 @@ const mutations = {
     state.catelog = obj.result
   },
   [types.FETCH_BOOK_LIST](state, obj) {
-    obj = obj.result
     state.bookList.totalNum = obj.totalNum
-    state.bookList.data = state
-      .bookList
-      .data
-      .concat(obj.data)
-    if (state.bookList.data.length < state.bookList.totalNum) {
-      state.showLoading = false
-    }
+    state.bookList.data = obj.data
   },
   [types.GET_CATEID](state, status) {
-    state.cateId = status
+    state.cateId = parseInt(status)
   },
   [types.CLEAN_CATEGORY](state) {
     state.catelog = []
@@ -72,17 +64,12 @@ const mutations = {
       totalNum: 0
     }
     state.cateId = 242
-  },
-  // loding
-  [types.TOOGLE_LOADING](state, status) {
-    state.showLoading = status
   }
 }
 
 const getters = {
   fetchCategory: state => state.catelog,
   fetchBookList: state => state.bookList,
-  showLoading: state => state.showLoading,
   cateId: state => state.cateId
 }
 

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div class="booklist-wrapper" ref="bookList" v-show="!loading" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy"
-      infinite-scroll-distance="10">
+    <div class="booklist-wrapper" ref="bookList">
       <ul>
         <li v-for="(item,index) in bookList.data" @click="selectBook(item,$event)" :key="index">
           <h1 class="title">{{item.title}}</h1>
@@ -32,7 +31,6 @@
         </li>
       </ul>
     </div>
-    <spinner v-show="loading" class="spinner"></spinner>
     <bookdetail :book="bookSelected" ref="bookDetail"></bookdetail>
   </div>
 </template>
@@ -40,9 +38,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '@/store/types'
-  import InfiniteScroll from 'vue-infinite-scroll'
   import BScroll from 'better-scroll'
-  import spinner from '@/components/spinner/spinner'
   import bookdetail from '@/components/bookdetail/bookdetail'
 
   export default {
@@ -54,8 +50,7 @@
     computed: {
       ...mapGetters({
         bookList: 'fetchBookList',
-        id: 'cateId',
-        busy: 'showLoading'
+        id: 'cateId'
       }),
       loading() {
         if (this.bookList.data.length === 0) {
@@ -94,11 +89,8 @@
         this.$refs.bookDetail.show()
       },
       loadMore() {
-        this[types.TOOGLE_LOADING](true)
-        let start = this.bookList.data.length
         this[types.FETCH_BOOK_LIST]({
-          id: this.id,
-          pn: start
+          id: this.id
         })
       },
       _initBookScroll() {
@@ -116,11 +108,7 @@
       }
     },
     components: {
-      spinner,
       bookdetail
-    },
-    directives: {
-      InfiniteScroll
     }
   }
 

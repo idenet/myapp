@@ -70,9 +70,7 @@
     methods: {
       ...mapActions([types.FETCH_MOVIE_LIST, types.CLEAN_MOVIE_LIST]),
       getMovies() {
-        this[types.FETCH_MOVIE_LIST]({
-          city: '宁波'
-        })
+        this[types.FETCH_MOVIE_LIST]()
       },
       _initMovieScroll() {
         if (!this.movieScroll) {
