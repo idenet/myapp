@@ -7,6 +7,9 @@
 现在开发完成后，发现其实这个app功能并不多，充其量算是一个具备基本开发流程的demo。本来还想做一下电影的查询和详情页，但是聚合的免费api太渣了，能用的不多，能做的更少了。这里倒是觉得豆瓣api起码功能齐全，或者用别人收集好的知乎api，更甚之自己写个爬虫。
 api转发后台在[这里](https://github.com/idenet/myappserver)
 
+# 静态数据展示地址
+http://t.cn/RXUeBRm
+
 # 技术栈
 vue2 + vuex + vue-router + ES2016 + axios + flex + stylus (写多一点是不是特别有气势😄)
 
