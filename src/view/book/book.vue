@@ -17,7 +17,7 @@
       <transition name="fold">
         <div class="detail-wrapper border-1px" v-show="listShow" ref="detail">
           <ul class="category-list">
-            <li class="item" v-for="(item,index) in category" :class="{'current':currentIndex===index}" @click="categoryToList(index, item.id, $event, 1)">
+            <li class="item clearfix" v-for="(item,index) in category" :class="{'current':currentIndex===index}" @click="categoryToList(index, item.id, $event, 1)">
               <span class="text">{{item.catalog}}</span>
             </li>
           </ul>
